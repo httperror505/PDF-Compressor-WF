@@ -41,8 +41,10 @@
             // 
             button1.Anchor = AnchorStyles.None;
             button1.BackColor = SystemColors.GradientActiveCaption;
+            button1.BackgroundImageLayout = ImageLayout.None;
             button1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(550, 222);
+            button1.ForeColor = SystemColors.ControlText;
+            button1.Location = new Point(556, 222);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(121, 36);
@@ -55,6 +57,7 @@
             // 
             textBox1.Anchor = AnchorStyles.None;
             textBox1.BackColor = SystemColors.GradientActiveCaption;
+            textBox1.BorderStyle = BorderStyle.None;
             textBox1.Location = new Point(177, 222);
             textBox1.Margin = new Padding(0);
             textBox1.Multiline = true;

@@ -39,8 +39,15 @@ namespace PDFCompressor
 
             string inputPath = selectedPdfPath;
 
+            string? directory = Path.GetDirectoryName(inputPath);
+            if (string.IsNullOrEmpty(directory))
+            {
+                MessageBox.Show("Could not determine the directory of the selected file.");
+                return;
+            }
+
             string outputPath = Path.Combine(
-                Path.GetDirectoryName(inputPath),
+                directory,
                 $"compressed_{Path.GetFileName(inputPath)}"
             );
 
