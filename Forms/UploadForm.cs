@@ -1,3 +1,4 @@
+using PDFCompressor.Services;
 using System.Windows.Forms;
 using static PDFCompressor.Services.PDFCompressionService;
 
@@ -10,7 +11,7 @@ namespace PDFCompressor
         public UploadForm()
         {
             InitializeComponent();
-        }   
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -26,13 +27,15 @@ namespace PDFCompressor
                 MessageBox.Show("File selected!");
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectedPdfPath))
             {
                 MessageBox.Show("Please upload a PDF first.");
                 return;
             }
+
+            progressBar1.Value = 0;
 
             string inputPath = selectedPdfPath;
 
@@ -41,9 +44,19 @@ namespace PDFCompressor
                 $"compressed_{Path.GetFileName(inputPath)}"
             );
 
-            pdfService.CompressPdf(inputPath, outputPath);
+            var progress = new Progress<int>(percent =>
+            {
+                progressBar1.Value = percent;
+            });
+
+            await Task.Run(() =>
+            {
+                var service = new PDFCompressionService.PdfCompressionService();
+                service.CompressPdf(inputPath, outputPath, progress);
+            });
 
             MessageBox.Show("Compression complete!\nSaved as: " + outputPath);
         }
+
     }
 }
