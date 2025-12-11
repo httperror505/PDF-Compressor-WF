@@ -32,6 +32,9 @@
             textBox1 = new TextBox();
             button2 = new Button();
             progressBar1 = new ProgressBar();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -76,20 +79,56 @@
             progressBar1.ForeColor = Color.Chartreuse;
             progressBar1.Location = new Point(160, 239);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(435, 17);
+            progressBar1.Size = new Size(467, 10);
             progressBar1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Open Sans ExtraBold", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(222, 65);
+            label1.Name = "label1";
+            label1.Size = new Size(376, 58);
+            label1.TabIndex = 4;
+            label1.Text = "File Compresssor";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ControlDarkDark;
+            label2.Location = new Point(211, 137);
+            label2.Name = "label2";
+            label2.Size = new Size(392, 20);
+            label2.TabIndex = 5;
+            label2.Text = "Compressing your file without compromising quality.";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ControlDarkDark;
+            label3.Location = new Point(398, 424);
+            label3.Name = "label3";
+            label3.Size = new Size(390, 17);
+            label3.TabIndex = 6;
+            label3.Text = "Product by zone7systems. Unauthorized sharing is prohibited.";
             // 
             // UploadForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(progressBar1);
             Controls.Add(button2);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "UploadForm";
-            Text = "Form1";
+            Text = "File Compressor";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -100,5 +139,8 @@
         private TextBox textBox1;
         private Button button2;
         private ProgressBar progressBar1;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }
