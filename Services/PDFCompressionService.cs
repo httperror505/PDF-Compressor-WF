@@ -9,22 +9,18 @@ namespace PDFCompressor.Services
         {
             public void CompressPdf(string input, string output)
             {
-                PdfDocument document = PdfReader.Open(input, PdfDocumentOpenMode.Modify);
+                using var inputDoc = PdfReader.Open(input, PdfDocumentOpenMode.Import);
+                using var outputDoc = new PdfDocument();
 
-                // Example: lower the quality of images inside the PDF
-                foreach (PdfPage page in document.Pages)
-                {
-                    // Iterate through images and recompress them (if applicable)
-                    // NOTE: PDFsharp does not have native re-compression, 
-                    // but we can force-flatten or remove unused objects.
-                }
+                outputDoc.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
+                outputDoc.Options.UseFlateDecoderForJpegImages = PdfUseFlateDecoderForJpegImages.Automatic;
+                outputDoc.Options.CompressContentStreams = true;
 
-                // PDFSharp trick: Save with "Optimize" flag
-                document.Options.FlateEncodeMode = PdfFlateEncodeMode.BestCompression;
-                document.Options.UseFlateDecoderForJpegImages = PdfUseFlateDecoderForJpegImages.Automatic;
-                document.Options.CompressContentStreams = true;
+                foreach (var page in inputDoc.Pages)
+                    outputDoc.AddPage(page);
 
-                document.Save(output);
+                outputDoc.Save(output);
+
             }
         }
     }
